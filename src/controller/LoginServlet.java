@@ -1,4 +1,4 @@
-package servlets;
+package controller;
 
 import java.io.IOException;
 import java.util.Date;
@@ -18,11 +18,10 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
-		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 		UserVO user = new UserVO();
 		user.setId(id);
-		user.setUsername(username);
-		user.setTest(new Date().toLocaleString());
+		user.setPassword(password);
 		session.setAttribute("user", user);
 		response.sendRedirect("home.jsp");
 	}

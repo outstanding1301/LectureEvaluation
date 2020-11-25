@@ -16,6 +16,5 @@
 	<% UserVO user = (UserVO) session.getAttribute("user"); %>
 	<p>ID : <%=user.getId() %></p>
 	<p>username : <%=user.getUsername() %></p>
-	<p>test : <%=user.getTest() %></p>
 </body>
 </html>

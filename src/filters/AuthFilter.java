@@ -39,7 +39,6 @@ public class AuthFilter implements Filter {
 			}
 			System.out.println(user.getId());
 			System.out.println(user.getUsername());
-			System.out.println(user.getTest());
 			chain.doFilter(req, response);
 			return;
 		}

@@ -1,7 +1,10 @@
+<%@page import="vo.UserVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.UserDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html class="has-navbar-fixed-top">
+<html>
 <head>
 <%@include file="common.jsp"%>
 <meta charset="UTF-8">
@@ -12,5 +15,13 @@
 		<jsp:param name="value" value="test"/>
 	</jsp:include>
 	<a href="authtest.jsp">AUTH TEST</a>
+	<%
+		UserDAO userDAO = new UserDAO();
+		ArrayList<UserVO> users = userDAO.selectAll();
+		
+		for (UserVO user : users) {
+			out.println(user.toString()+"<br>");
+		}
+	%>
 </body>
 </html>

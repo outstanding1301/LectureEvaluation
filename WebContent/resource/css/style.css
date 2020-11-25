@@ -7,12 +7,15 @@
 
 * {
 	font-family: "Noto Sans KR", sans-serif;
-	line-height: 1.0;
 }
 
 html, body {
 	padding: 0;
 	margin: 0;
+}
+
+body { 
+	padding-top: 70px; 
 }
 
 .header__header{
@@ -49,13 +52,10 @@ html, body {
 
 .header__input {
 	width: 160px !important;
-	height: 32px !important;
 }
 .header__button {
-	height: 32px !important;
-	line-height: 1 !important;
 	margin: 0 !important;
-	margin-left: 5px !important;
+	margin-right: 5px !important;
 }
 
 .header__category_item:hover {
@@ -79,6 +79,7 @@ html, body {
 
 .header__userName {
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .header__userInfo {
@@ -95,6 +96,21 @@ html, body {
     color: gray;
 }
 
-.header__form {
-	display: inline;
+
+
+
+
+.register__container {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-content: center;
+	padding-top: 30px;
+}
+
+.register__form_container {
+	max-width: 720px;
+	width: 70%;
+	min-width: 480px;
+	padding-bottom: 60px;
 }
