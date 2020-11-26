@@ -36,11 +36,11 @@
 			  <div class="form-row">
 				  <div class="form-group col">
 				    <label for="regfrom_pw">비밀번호</label>
-				    <input name="password" type="text" class="form-control" id="regfrom_pw" placeholder="비밀번호...">
+				    <input name="password" type="password" class="form-control" id="regfrom_pw" placeholder="비밀번호...">
 				  </div>
 				  <div class="form-group col">
 				    <label for="regfrom_pw_confirm">비밀번호 확인</label>
-				    <input type="text" class="form-control" id="regfrom_pw_confirm" placeholder="비밀번호 확인...">
+				    <input type="password" class="form-control" id="regfrom_pw_confirm" placeholder="비밀번호 확인...">
 				  </div>
 			  </div>
 			  <div class="form-group">
