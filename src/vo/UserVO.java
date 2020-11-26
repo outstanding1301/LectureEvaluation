@@ -3,29 +3,34 @@ package vo;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UserVO implements Serializable {
 	private String id;
 	private String username;
 	private String password;
 	private String studentId;
-	private int major;
 	private String email;
 	private String phone;
+	private Date regDate;
+	private boolean admin;
 	
 	public UserVO() {
 		
 	}
-	
-	public UserVO(String id, String username, String password, String studentId, int major, String email,
-			String phone) {
+
+	public UserVO(String id, String username, String password, String studentId, String email, String phone,
+			Date regDate, boolean admin) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.studentId = studentId;
-		this.major = major;
 		this.email = email;
 		this.phone = phone;
+		this.regDate = regDate;
+		this.admin = admin;
 	}
 
 	public UserVO(ResultSet rs) throws SQLException {
@@ -33,9 +38,17 @@ public class UserVO implements Serializable {
 		username = rs.getString(2);
 		password = rs.getString(3);
 		studentId = rs.getString(4);
-		major = rs.getInt(5);
-		email = rs.getString(6);
-		phone = rs.getString(7);
+		email = rs.getString(5);
+		phone = rs.getString(6);
+		String dateStr = rs.getString(7);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			regDate = sdf.parse(dateStr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		admin = rs.getInt(8) == 1;
 	}
 	
 	public String getId() {
@@ -70,14 +83,6 @@ public class UserVO implements Serializable {
 		this.studentId = studentId;
 	}
 
-	public int getMajor() {
-		return major;
-	}
-
-	public void setMajor(int major) {
-		this.major = major;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -94,9 +99,25 @@ public class UserVO implements Serializable {
 		this.phone = phone;
 	}
 
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", username=" + username + ", password=" + password + ", studentId=" + studentId
-				+ ", major=" + major + ", email=" + email + ", phone=" + phone + "]";
+				+ ", email=" + email + ", phone=" + phone + ", regDate=" + regDate + ", admin=" + admin + "]";
 	}
 }

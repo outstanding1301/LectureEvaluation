@@ -1,17 +1,13 @@
 <%@tag body-content="empty" pageEncoding="UTF-8" %>
 <%@attribute name="lecture" required="true" type="vo.LectureVO"%>
-<%@attribute name="lid" type="java.lang.Integer"%>
-<%
-	System.out.println(lid);
-%>
-<%-- <div onclick="location.href=lecture.jsp?lec_id=<%=lecture.getId()%>" style="cursor:pointer;">
-	<h2><%=lecture.getName() %></h2>
-	<h3><%=lecture.getProfessor() %></h3>
-	<h3><%=lecture.getRating() %></h3>
-</div> --%>
+<%@taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
-<div onclick="location.href=lecture.jsp?lec_id=1" style="cursor:pointer;">
-	<h2>아니 </h2>
-	<h3>와이 안되농 </h3>
-	<h3>c8</h3>
+<div class="card" style="width: 30rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%=lecture.getName() %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%=lecture.getProfessor() %></h6>
+    <p class="card-text">평균 평점 : <tags:star value="<%=(int) lecture.getRating() %>"/> <span style="color: gray">(<%=String.format("%.2f", lecture.getRating()) %>)</span></p>
+    <p class="card-text">등록된 평가 수 : <%=lecture.getEvalCount() %></p>
+    <a href="lecture?lec_id=<%=lecture.getId()%>" class="card-link">☞ 강의 평가 페이지 바로가기</a>
+  </div>
 </div>

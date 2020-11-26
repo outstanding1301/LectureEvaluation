@@ -1,2 +1,9 @@
 /controller/
+/dao/
+/tag/
+/filter/
 /vo/
+/entity.class
+/MajorVO.class
+/entity/
+/data/

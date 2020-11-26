@@ -1,4 +1,4 @@
-package filters;
+package filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import vo.UserVO;
 
-@WebFilter(urlPatterns = {"/authtest.jsp"})
+@WebFilter(urlPatterns = {"/authtest.jsp", "/EvaluationServlet"})
 public class AuthFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		System.out.println("init AuthFilter");
@@ -32,7 +32,7 @@ public class AuthFilter implements Filter {
 			HttpSession session = req.getSession();
 			UserVO user = (UserVO) session.getAttribute("user");
 			if(user == null) {
-				request.setAttribute("message", "인증 실패");
+				request.setAttribute("message", "로그인이 필요합니다!");
 				request.getRequestDispatcher("error.jsp").forward(req, response);
 //				chain.doFilter(req, response);
 				return;
@@ -42,7 +42,7 @@ public class AuthFilter implements Filter {
 			chain.doFilter(req, response);
 			return;
 		}
-		request.setAttribute("message", "인증 실패");
+		request.setAttribute("message", "로그인이 필요합니다!");
 		request.getRequestDispatcher("error.jsp").forward(request, response);
 		chain.doFilter(request, response);
 	}

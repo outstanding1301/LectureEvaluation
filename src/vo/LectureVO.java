@@ -1,18 +1,22 @@
 package vo;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LectureVO implements Serializable {
 	private int id;
 	private String name;
 	private String professor;
-	private int rating;
+	private double rating;
+	private int evalCount;
 
-	public LectureVO(int id, String name, String professor, int rating) {
-		this.id = id;
-		this.name = name;
-		this.professor = professor;
-		this.rating = rating;
+	public LectureVO(ResultSet rs) throws SQLException {
+		id = rs.getInt(1);
+		name = rs.getString(2);
+		professor = rs.getString(3);
+		rating = rs.getDouble(4);
+		evalCount = rs.getInt(5);
 	}
 
 	public int getId() {
@@ -39,12 +43,20 @@ public class LectureVO implements Serializable {
 		this.professor = professor;
 	}
 
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
+	
+	public int getEvalCount() {
+		return evalCount;
+	}
 
+	public void setEvalCount(int evalCount) {
+		this.evalCount = evalCount;
+	}
+	
 }

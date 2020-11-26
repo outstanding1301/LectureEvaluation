@@ -51,11 +51,11 @@ body {
 }
 
 .header__input {
-	width: 160px !important;
+	width: 150px !important;
 }
 .header__button {
 	margin: 0 !important;
-	margin-right: 5px !important;
+	margin-right: 3px !important;
 }
 
 .header__category_item:hover {
@@ -67,14 +67,6 @@ body {
 
 .header__icon {
     margin-left: 10px;
-}
-
-.header__button {   
-    margin-right: 10px;
-    margin-left: 10px;
-    cursor: pointer;
-    color: green;
-    font-weight: bold;
 }
 
 .header__userName {
@@ -97,7 +89,9 @@ body {
 }
 
 
-
+.star_checked {
+  color: orange !important;
+}
 
 
 .register__container {
@@ -109,8 +103,42 @@ body {
 }
 
 .register__form_container {
-	max-width: 720px;
+	max-width: 480px;
 	width: 70%;
-	min-width: 480px;
+	min-width: 420px;
 	padding-bottom: 60px;
+}
+
+.eval__container {
+	min-width: 480px; 
+	width: 100%;
+	padding-left: 3%; 
+	padding-right: 3%;
+}
+
+.eval_form {
+	display: flex;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.eval_form__input {
+	width: 100% !important;
+	height: 100% !important;
+	margin: 0 !important;
+}
+
+.eval_form__box_star {
+	margin-right: 5px;
+}
+
+.eval_form__box {
+	display: flex;
+	justify-content: center;
+}
+
+.eval_form__box_input {
+	flex: 1;
+	display: flex;
+	justify-content: center;
 }

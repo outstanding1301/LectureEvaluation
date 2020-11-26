@@ -1,6 +1,10 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import dao.UserDAO;
 import vo.UserVO;
 
-@WebServlet("/RegisterServlet")
+@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
@@ -27,14 +31,25 @@ public class RegisterServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password"); // 암호화 필요
 		String studentId = request.getParameter("student_id");
-		int major = Integer.parseInt(request.getParameter("major")); // 예외처리 필요
 		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
+		String phone1 = request.getParameter("phone1");
+		String phone2 = request.getParameter("phone2");
+		String phone3 = request.getParameter("phone3");
+		String phone = phone1 + "-" + phone2 + "-" + phone3;
 		
-		UserVO user = new UserVO(id, username, password, studentId, major, email, phone);
+		UserVO user = new UserVO(id, username, password, studentId, email, phone , new Date(), false);
 		
 		UserDAO userDAO = new UserDAO();
-		userDAO.addUser(user);
-		response.sendRedirect("");
+		boolean success = userDAO.addUser(user);
+		
+		if (!success) {
+			response.setContentType("text/html; charset=UTF-8"); 
+			PrintWriter writer = response.getWriter(); 
+			writer.println("<script>alert('회원가입에 실패했습니다.'); location.href='"+request.getContextPath()+"/register';</script>");
+			writer.close();
+			return;
+		}
+		
+		response.sendRedirect(request.getContextPath());
 	}
 }
