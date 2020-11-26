@@ -1,5 +1,8 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="vo.LectureVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top">
 <head>
@@ -12,6 +15,12 @@
 		<jsp:param name="value" value="test"/>
 	</jsp:include>
 	강의 목록 <br>
-	<a href="lecture.jsp?lec_id=1">강의 1</a>
+	<%
+	ArrayList<LectureVO> lectures = new ArrayList<>();
+	lectures.add(new LectureVO(1, "테스트1", "테스트교수1", 5));
+	lectures.add(new LectureVO(2, "테스트2", "테스트교수2", 7));
+	lectures.add(new LectureVO(3, "테스트3", "테스트교수3", 10));
+	%>
+	<tags:lecture lecture="${lectures.get(0)}" lid="${lectures.get(0).getId()}"/>
 </body>
 </html>

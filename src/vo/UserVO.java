@@ -19,7 +19,6 @@ public class UserVO implements Serializable {
 	
 	public UserVO(String id, String username, String password, String studentId, int major, String email,
 			String phone) {
-		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
