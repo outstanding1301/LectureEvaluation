@@ -29,9 +29,9 @@ public class LoginServlet extends HttpServlet {
 //			request.setAttribute("message", "존재하지 않는 ID입니다.");
 //			request.getRequestDispatcher("error.jsp").forward(request, response);
 			response.setContentType("text/html; charset=UTF-8"); 
-			PrintWriter writer = response.getWriter(); 
-			writer.println("<script>alert('존재하지 않는 ID입니다.'); location.href='"+request.getContextPath()+"';</script>");
-			writer.close();
+			PrintWriter out = response.getWriter(); 
+			out.println("<script>alert('존재하지 않는 ID입니다.'); location.href='"+request.getContextPath()+"';</script>");
+			out.close();
 			return;
 
 		}
@@ -39,9 +39,9 @@ public class LoginServlet extends HttpServlet {
 //			request.setAttribute("message", "비밀번호가 틀렸습니다.");
 //			request.getRequestDispatcher("error.jsp").forward(request, response);
 			response.setContentType("text/html; charset=UTF-8"); 
-			PrintWriter writer = response.getWriter(); 
-			writer.println("<script>alert('비밀번호가 틀렸습니다.'); location.href='"+request.getContextPath()+"';</script>");
-			writer.close();
+			PrintWriter out = response.getWriter(); 
+			out.println("<script>alert('비밀번호가 틀렸습니다.'); location.href='"+request.getContextPath()+"';</script>");
+			out.close();
 			return;
 		}
 

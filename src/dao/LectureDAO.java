@@ -55,6 +55,46 @@ public class LectureDAO extends DAOBase {
 		return vos;
 	}
 	
+	public ArrayList<LectureVO> selectTop10() {
+		ArrayList<LectureVO> vos = new ArrayList<>();
+		
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select l.id, l.name, l.professor, IFNULL(avg(e.rating), 0) rating, count(e.rating) eval_count "
+				+ "from lecture l "
+				+ "left join evaluation e on l.id = e.lecture_id "
+				+ "group by l.id "
+				+ "order by rating desc limit 10";
+		
+		try {
+			con = DriverManager.getConnection(url, db_id, db_pw);
+			stmt = con.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				LectureVO vo = new LectureVO(rs);
+				vos.add(vo);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null) stmt.close();
+				if (con != null) con.close();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return vos;
+	}
+	
 	public LectureVO findLecture(int id) {
 		LectureVO vo = null;
 		Connection con = null;

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import vo.UserVO;
 
@@ -90,7 +91,7 @@ public class UserDAO extends DAOBase {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		boolean ret = false;
-		String sql = "insert into user values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into user(id, username, password, student_id, email, phone) values(?,?,?,?,?,?)";
 		
 		try {
 			con = DriverManager.getConnection(url, db_id, db_pw);
@@ -101,12 +102,6 @@ public class UserDAO extends DAOBase {
 			stmt.setString(4, user.getStudentId());
 			stmt.setString(5, user.getEmail());
 			stmt.setString(6, user.getPhone());
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String currentTime = sdf.format(user.getRegDate());
-			
-			stmt.setString(7, currentTime);
-			stmt.setBoolean(8, user.isAdmin());
 			stmt.execute();
 			System.out.println("DB: 유저 생성됨 "+user.toString());
 			ret = true;

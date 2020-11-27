@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html class="has-navbar-fixed-top">
+<html>
 <head>
 <%@include file="common.jsp"%>
 <meta charset="UTF-8">
@@ -11,6 +11,7 @@
 	<jsp:include page="header.jsp">
 		<jsp:param name="value" value="test"/>
 	</jsp:include>
+<div class="container">
 	<div class="register__container">
 		<div class="register__form_container">
 			<h1>회원가입</h1>
@@ -67,6 +68,7 @@
 			</form>
 		</div>
 	</div>
+</div>
 	<script>
 		function onSubmitRegform() {
 			var form = document.regform;

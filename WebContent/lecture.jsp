@@ -4,26 +4,12 @@
 <%@page import="vo.LectureVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="tags" tagdir="/WEB-INF/tags" %>
-
-<% 
-String lec_id = request.getParameter("lec_id");
-if (lec_id == null) {
-	response.sendRedirect("lecture");
-	return;
-}
-LectureVO lecture = (LectureVO) request.getAttribute("lecture");
-if (lecture == null) {
-	response.sendRedirect("lecture?lec_id="+lec_id);
-	return;
-}
-
-EvaluationDAO edao = new EvaluationDAO();
-ArrayList<EvaluationVO> evaluations = edao.selectByLectureId(lecture.getId());
-%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html class="has-navbar-fixed-top">
+<html>
 <head>
 <%@include file="common.jsp"%>
 <meta charset="UTF-8">
@@ -33,16 +19,19 @@ ArrayList<EvaluationVO> evaluations = edao.selectByLectureId(lecture.getId());
 	<jsp:include page="header.jsp">
 		<jsp:param name="value" value="test"/>
 	</jsp:include>
-	
-	
-<div class="eval__container">
+<div class="container">
 <h3>강의평가</h3>
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title"><%=lecture.getName() %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%=lecture.getProfessor() %></h6>
-    <p class="card-text">평균 평점 : <tags:star value="<%=(int) lecture.getRating() %>"/> <span style="color: gray">(<%=String.format("%.2f", lecture.getRating()) %>)</span></p>
-    <p class="card-text">등록된 평가 수 : <%=lecture.getEvalCount() %></p>
+    <h5 class="card-title">${ lecture.getName() }</h5>
+    <h6 class="card-subtitle mb-2 text-muted">${ lecture.getProfessor() }</h6>
+    <p class="card-text">평균 평점 : 
+	    <tags:star value="${ lecture.getRating() }"/> 
+	    <span style="color: gray">
+	    	(<fmt:formatNumber type="number" pattern = "0.00" value="${ lecture.getRating() }"/>)
+	    </span>
+    </p>
+    <p class="card-text">등록된 평가 수 : ${ lecture.getEvalCount() }</p>
   </div>
 </div>
 	
@@ -52,7 +41,7 @@ ArrayList<EvaluationVO> evaluations = edao.selectByLectureId(lecture.getId());
 	    <div class="eval_form__box_star">
 	      <tags:starPicker/>
 	      <input type="hidden" name="rating">
-	      <input type="hidden" name="lec_id" value="<%=lecture.getId()%>">
+	      <input type="hidden" name="lec_id" value="${ lecture.getId() }">
 	    </div>
 	    <div class="eval_form__box_input">
 	      <input type="text" name="comment" class="form-control eval_form__input" id="inlineFormInputName" placeholder="강의에 대한 평가를 자유롭게 입력해주세요.">
@@ -63,13 +52,9 @@ ArrayList<EvaluationVO> evaluations = edao.selectByLectureId(lecture.getId());
 	  </div>
 	</form>
 	
-	<%
-		for (EvaluationVO evaluation : evaluations) {
-	%>
-		<tags:evaluation evaluation="<%=evaluation %>"/>
-	<%
-		}
-	%>
+	<c:forEach var="evaluation" items="${ evaluations }">
+		<tags:evaluation evaluation="${ evaluation }"/>
+	</c:forEach>
 </div>
 </div>
 	

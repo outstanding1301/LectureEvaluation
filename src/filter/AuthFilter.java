@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import vo.UserVO;
 
-@WebFilter(urlPatterns = {"/authtest.jsp", "/EvaluationServlet"})
+@WebFilter(urlPatterns = {"/authtest.jsp", "/LogoutServlet", "/EvaluationServlet", "/posting","/ImageServlet"})
 public class AuthFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		System.out.println("init AuthFilter");

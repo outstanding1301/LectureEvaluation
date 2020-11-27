@@ -4,8 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
-<html class="has-navbar-fixed-top">
+<html>
 <head>
 <%@include file="common.jsp"%>
 <meta charset="UTF-8">
@@ -15,16 +17,11 @@
 	<jsp:include page="header.jsp">
 		<jsp:param name="value" value="test"/>
 	</jsp:include>
-	<h1>강의 목록</h1>
-	<%
-	LectureDAO dao = new LectureDAO();
-	ArrayList<LectureVO> lectures = dao.selectAll();
-	
-	for(LectureVO lecture : lectures) {
-		%>
-		<tags:lecture lecture="<%=lecture%>"/>
-		<% 
-	}
-	%>
+	<div class="container">
+		<h1>강의 목록</h1>
+		<c:forEach var="lecture" items="${lectures}">
+			<tags:lecture lecture="${lecture}"/>
+		</c:forEach>
+	</div>
 </body>
 </html>

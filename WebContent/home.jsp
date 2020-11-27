@@ -3,6 +3,9 @@
 <%@page import="dao.UserDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +17,72 @@
 	<jsp:include page="header.jsp">
 		<jsp:param name="value" value="test"/>
 	</jsp:include>
-	<a href="authtest.jsp">AUTH TEST</a>
-	<%
-		UserDAO userDAO = new UserDAO();
-		ArrayList<UserVO> users = userDAO.selectAll();
-		
-		for (UserVO user : users) {
-			out.println(user.toString()+"<br>");
-		}
-	%>
+	<jsp:useBean id="now" class="java.util.Date"/>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+				<ul class="list-group">
+				<li class="list-group-item d-flex justify-content-between align-items-center active">
+					<a href="lecture" class="text-white"><strong>강의 랭킹 Top 10</strong></a>
+				</li>
+				<c:forEach var="lecture" items="${lectures}">
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						<a class="text-secondary" href="lecture?lec_id=${lecture.getId()}">${lecture.getName()} <span class="text-primary ml-2">${lecture.getProfessor()}</span> <span class="text-danger ml-2">[${lecture.getEvalCount()}]</span></a>
+						<span>
+						<tags:star value="${lecture.getRating()}"/>
+						<span class="text-secondary ml-1">(<fmt:formatNumber type="number" pattern = "0.00" value="${ lecture.getRating() }"/>)</span>
+						</span>
+					</li>
+				</c:forEach>
+				</ul>
+		    </div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-sm">
+				<ul class="list-group">
+				<li class="list-group-item d-flex justify-content-between align-items-center active">
+					<a href="board?category=notice" class="text-white"><strong>공지사항</strong></a>
+				</li>
+				<c:forEach var="post" items="${notices}">
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						<a class="text-secondary" href="post?category=notice&postid=${post.getId()}"><span class="text-primary mr-3">${post.getId()}</span>${post.getTitle()}</a>
+						<span class="text-secondary">
+						<c:choose>
+							<c:when test="${post.getPostedDate().getYear() == now.getYear() && post.getPostedDate().getMonth() == now.getMonth() && post.getPostedDate().getDate() == now.getDate()}">
+								<fmt:formatDate value="${post.getPostedDate()}" pattern="HH:mm"/>
+							</c:when>
+							<c:otherwise>
+								<fmt:formatDate value="${post.getPostedDate()}" pattern="MM/dd"/>
+							</c:otherwise>
+						</c:choose>
+						</span>
+					</li>
+				</c:forEach>
+				</ul>
+		    </div>
+			<div class="col-sm">
+				<ul class="list-group">
+				<li class="list-group-item d-flex justify-content-between align-items-center active">
+					<a href="board?category=free" class="text-white"><strong>자유게시판</strong></a>
+				</li>
+				<c:forEach var="post" items="${frees}">
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						<a class="text-secondary" href="post?category=free&postid=${post.getId()}"><span class="text-primary mr-3">${post.getId()}</span>${post.getTitle()}</a>
+						<span class="text-secondary">
+						<c:choose>
+							<c:when test="${post.getPostedDate().getYear() == now.getYear() && post.getPostedDate().getMonth() == now.getMonth() && post.getPostedDate().getDate() == now.getDate()}">
+								<fmt:formatDate value="${post.getPostedDate()}" pattern="HH:mm"/>
+							</c:when>
+							<c:otherwise>
+								<fmt:formatDate value="${post.getPostedDate()}" pattern="MM/dd"/>
+							</c:otherwise>
+						</c:choose>
+						</span>
+					</li>
+				</c:forEach>
+				</ul>
+		    </div>
+		</div>
+	</div>
 </body>
 </html>

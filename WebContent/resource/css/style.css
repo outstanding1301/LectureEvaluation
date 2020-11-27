@@ -15,7 +15,8 @@ html, body {
 }
 
 body { 
-	padding-top: 70px; 
+	padding-top: 85px;
+	padding-bottom: 100px;
 }
 
 .header__header{
@@ -85,7 +86,7 @@ body {
     font-weight: bold;
 }
 .header__userName_greeting {
-    color: gray;
+    color: #eeeeee;
 }
 
 
@@ -107,13 +108,6 @@ body {
 	width: 70%;
 	min-width: 420px;
 	padding-bottom: 60px;
-}
-
-.eval__container {
-	min-width: 480px; 
-	width: 100%;
-	padding-left: 3%; 
-	padding-right: 3%;
 }
 
 .eval_form {
@@ -141,4 +135,8 @@ body {
 	flex: 1;
 	display: flex;
 	justify-content: center;
+}
+
+.editor__title {
+	margin-bottom: 5px;
 }

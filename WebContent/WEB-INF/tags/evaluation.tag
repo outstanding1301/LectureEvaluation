@@ -36,15 +36,21 @@
 		color: #ff6a6a;
 		font-size: 10pt;
 		font-weight: bold;
-		padding: 10px;
+		padding: 0;
+		margin-right: 10px;
 		cursor: pointer;
+		background: none;
+		border: none;
+		cursor: pointer;
+		outline: inherit;
 	}
 </style>
 <%
 	UserVO user = (UserVO) session.getAttribute("user");
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 %>
-<div class="eval__component_container">
+<form action="EvaluationServlet" method="post" class="eval__component_container">
+	<input type="hidden" name="delete" value="true" />
 	<span class="eval__component_star">
 		<tags:star value="<%=evaluation.getRating() %>"/>
 	</span>
@@ -55,9 +61,8 @@
 		<%
 		if (user != null && user.getId().equals(evaluation.getUserId())) {
 		%>
-		<span class="eval_component_delete">
-			x
-		</span>
+		<input type="submit" class="eval_component_delete" value="x">
+		<input type="hidden" name="lec_id" value="<%=evaluation.getLectureId()%>">
 		<%
 		}
 		%>
@@ -65,4 +70,4 @@
 			<%=sdf.format(evaluation.getDate()) %>
 		</span>
 	</span>
-</div>
+</form>

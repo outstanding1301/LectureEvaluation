@@ -37,16 +37,23 @@ public class RegisterServlet extends HttpServlet {
 		String phone3 = request.getParameter("phone3");
 		String phone = phone1 + "-" + phone2 + "-" + phone3;
 		
-		UserVO user = new UserVO(id, username, password, studentId, email, phone , new Date(), false);
+		UserVO user = new UserVO();
+		
+		user.setId(id);
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setStudentId(studentId);
+		user.setEmail(email);
+		user.setPhone(phone);
 		
 		UserDAO userDAO = new UserDAO();
 		boolean success = userDAO.addUser(user);
 		
 		if (!success) {
 			response.setContentType("text/html; charset=UTF-8"); 
-			PrintWriter writer = response.getWriter(); 
-			writer.println("<script>alert('회원가입에 실패했습니다.'); location.href='"+request.getContextPath()+"/register';</script>");
-			writer.close();
+			PrintWriter out = response.getWriter(); 
+			out.println("<script>alert('회원가입에 실패했습니다.'); location.href='"+request.getContextPath()+"/register';</script>");
+			out.close();
 			return;
 		}
 		

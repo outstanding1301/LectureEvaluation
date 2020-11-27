@@ -26,9 +26,9 @@ UserVO user = (UserVO) session.getAttribute("user");
           게시판
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="board.jsp?category=notice">공지사항</a>
+          <a class="dropdown-item" href="board?category=notice">공지사항</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="board.jsp?category=free">자유게시판</a>
+          <a class="dropdown-item" href="board?category=free">자유게시판</a>
         </div>
       </li>
     </ul>

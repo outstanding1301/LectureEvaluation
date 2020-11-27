@@ -21,18 +21,6 @@ public class UserVO implements Serializable {
 		
 	}
 
-	public UserVO(String id, String username, String password, String studentId, String email, String phone,
-			Date regDate, boolean admin) {
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.studentId = studentId;
-		this.email = email;
-		this.phone = phone;
-		this.regDate = regDate;
-		this.admin = admin;
-	}
-
 	public UserVO(ResultSet rs) throws SQLException {
 		id = rs.getString(1);
 		username = rs.getString(2);
