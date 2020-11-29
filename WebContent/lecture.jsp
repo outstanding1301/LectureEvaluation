@@ -44,7 +44,7 @@
 	      <input type="hidden" name="lec_id" value="${ lecture.getId() }">
 	    </div>
 	    <div class="eval_form__box_input">
-	      <input type="text" name="comment" class="form-control eval_form__input" id="inlineFormInputName" placeholder="강의에 대한 평가를 자유롭게 입력해주세요.">
+	      <input type="text" name="comment" maxlength="30" class="form-control eval_form__input" id="inlineFormInputName" placeholder="강의에 대한 평가를 자유롭게 입력해주세요.">
 	    </div>
 	    <div class="eval_form__box">
 	      <button type="button" class="btn btn-primary" onclick="onEvaluationSubmit()">등록</button>

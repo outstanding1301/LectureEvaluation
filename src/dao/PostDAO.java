@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import vo.EvaluationVO;
 import vo.LectureVO;
 import vo.PostVO;
 import vo.UserVO;
@@ -25,6 +26,80 @@ public class PostDAO extends DAOBase {
 		ResultSet rs = null;
 		
 		String sql = "select p.*, u.username from post p left join user u on p.user_id = u.id where p.category=? order by p.id desc";
+		
+		try {
+			con = DriverManager.getConnection(url, db_id, db_pw);
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, category);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				PostVO vo = new PostVO(rs);
+				vos.add(vo);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null) stmt.close();
+				if (con != null) con.close();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return vos;
+	}
+
+	public ArrayList<PostVO> selectByCategoryTitle(String category, String title) {
+		ArrayList<PostVO> vos = new ArrayList<>();
+		
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select p.*, u.username from post p left join user u on p.user_id = u.id where p.category=? and p.title like '%"+title+"%' order by p.id desc";
+		
+		try {
+			con = DriverManager.getConnection(url, db_id, db_pw);
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, category);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				PostVO vo = new PostVO(rs);
+				vos.add(vo);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null) stmt.close();
+				if (con != null) con.close();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return vos;
+	}
+
+	public ArrayList<PostVO> selectByCategoryAuthor(String category, String author) {
+		ArrayList<PostVO> vos = new ArrayList<>();
+		
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select p.*, u.username from post p left join user u on p.user_id = u.id where p.category=? and u.username like '%"+author+"%' order by p.id desc";
 		
 		try {
 			con = DriverManager.getConnection(url, db_id, db_pw);
@@ -164,5 +239,37 @@ public class PostDAO extends DAOBase {
 			}
 		}
 		return postId;
+	}
+	
+	public boolean removePost(PostVO vo) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+		boolean ret = false;
+		String sql = "delete from post where id=? and category=?";
+		
+		try {
+			con = DriverManager.getConnection(url, db_id, db_pw);
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, vo.getId());
+			stmt.setString(2, vo.getCategory());
+			stmt.executeUpdate();
+			
+			System.out.println("DB: 글 삭제됨 ");
+			ret = true;
+		}
+		catch (Exception e) {
+			System.out.println("DB: 글 삭제실패");
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if (stmt != null) stmt.close();
+				if (con != null) con.close();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return ret;
 	}
 }

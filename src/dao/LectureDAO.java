@@ -55,7 +55,7 @@ public class LectureDAO extends DAOBase {
 		return vos;
 	}
 	
-	public ArrayList<LectureVO> selectTop10() {
+	public ArrayList<LectureVO> selectTop(int limit) {
 		ArrayList<LectureVO> vos = new ArrayList<>();
 		
 		Connection con = null;
@@ -66,11 +66,12 @@ public class LectureDAO extends DAOBase {
 				+ "from lecture l "
 				+ "left join evaluation e on l.id = e.lecture_id "
 				+ "group by l.id "
-				+ "order by rating desc limit 10";
+				+ "order by rating desc limit ?";
 		
 		try {
 			con = DriverManager.getConnection(url, db_id, db_pw);
 			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, limit);
 			rs = stmt.executeQuery();
 			
 			while (rs.next()) {

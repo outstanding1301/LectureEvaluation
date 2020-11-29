@@ -21,8 +21,6 @@
 		String category_kr = category;
 		if (category.equals("free")) category_kr = "자유게시판";
 		else if (category.equals("notice")) category_kr = "공지사항";
-		
-		System.out.println(request.getAttribute("posts"));
 	%>
 	<jsp:useBean id="now" class="java.util.Date"/>
 	<div class="container">
@@ -30,10 +28,10 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th style="width: 10%">번호</th>
-					<th style="width: 50%">제목</th>
-					<th style="width: 30%">작성자</th>
-					<th style="width: 20%">등록일</th>
+					<th style="width: 15%">번호</th>
+					<th style="width: 55%">제목</th>
+					<th style="width: 15%">작성자</th>
+					<th style="width: 15%">등록일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -60,7 +58,18 @@
 			</tbody>
 		</table>
 		<hr/>
-		<a style="float: right;" class="btn btn-outline-primary" href="posting?category=<%=category %>">글쓰기</a>
+		<div class="board__search_bottom">
+			<form action="board" name="sform" method="get" class="form-inline my-2 my-lg-0">
+				<input name="category" type="hidden" value="<%=category%>">
+				<select name="type" class="form-control">
+			      <option value="title">제목</option>
+			      <option value="author">작성자</option>
+			    </select>	
+		      <input name="filter" class="form-control mr-sm-2" type="search" placeholder="검색..." aria-label="Search">
+		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+		    </form>
+			<a style="float: right;" class="btn btn-outline-primary" href="posting?category=<%=category %>">글쓰기</a>
+		</div>
 	</div>
 </body>
 </html>

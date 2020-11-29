@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import vo.UserVO;
 
-@WebFilter(urlPatterns = {"/authtest.jsp", "/LogoutServlet", "/EvaluationServlet", "/posting","/ImageServlet"})
+@WebFilter(urlPatterns = {"/LogoutServlet", "/EvaluationServlet", "/posting","/ImageServlet"})
 public class AuthFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		System.out.println("init AuthFilter");
@@ -34,11 +34,8 @@ public class AuthFilter implements Filter {
 			if(user == null) {
 				request.setAttribute("message", "로그인이 필요합니다!");
 				request.getRequestDispatcher("error.jsp").forward(req, response);
-//				chain.doFilter(req, response);
 				return;
 			}
-			System.out.println(user.getId());
-			System.out.println(user.getUsername());
 			chain.doFilter(req, response);
 			return;
 		}

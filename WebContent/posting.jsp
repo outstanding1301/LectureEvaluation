@@ -20,7 +20,7 @@
 			<div id="summernote"></div>
 			<div style="margin-top: 5px;">
 				<input type="button" class="btn btn-primary" onclick="onPosting()" value="글쓰기">
-				<input type="button" class="btn btn-outline-primary" onclick="" value="나가기">
+				<a href="board?category=${param.category}" class="btn btn-outline-primary">나가기</a>
 			</div>
 		</form>
 	</div>

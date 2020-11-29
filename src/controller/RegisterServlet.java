@@ -56,7 +56,9 @@ public class RegisterServlet extends HttpServlet {
 			out.close();
 			return;
 		}
-		
-		response.sendRedirect(request.getContextPath());
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter(); 
+		out.println("<script>alert('회원가입에 성공했습니다. 로그인 해주세요.'); location.href='"+request.getContextPath()+"';</script>");
+		out.close();
 	}
 }

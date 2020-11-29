@@ -29,6 +29,31 @@
 		<div>
 			<a class="btn btn-outline-primary" href="board?category=${ post.getCategory() }">목록</a>
 			<a style="float: right;" class="btn btn-outline-primary" href="posting?category=${ post.getCategory() }">글쓰기</a>
+			<c:if test="${isAuthor}">
+				<button type="button" style="float: right;" class="btn btn-outline-danger mr-1" data-toggle="modal" data-target="#delModal">삭제</button>
+			</c:if>
+		</div>
+		
+		<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="delModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="delModalLabel">글 삭제</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        정말 삭제하시겠습니까?
+		      </div>
+		      <form action="post" method="post" class="modal-footer">
+		      	<input type="hidden" name="postid" value="${post.getId()}">
+		      	<input type="hidden" name="category" value="${post.getCategory()}">
+		        <button type="submit" class="btn btn-danger">삭제</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		      </form>
+		    </div>
+		  </div>
 		</div>
 	</div>
 </body>

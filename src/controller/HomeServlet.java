@@ -20,9 +20,9 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LectureDAO ldao = new LectureDAO();
 		PostDAO pdao = new PostDAO();
-		ArrayList<PostVO> frees = pdao.selectByCategory("free", 10);
-		ArrayList<PostVO> notices = pdao.selectByCategory("notice", 10);
-		ArrayList<LectureVO> lectures = ldao.selectTop10();
+		ArrayList<PostVO> frees = pdao.selectByCategory("free", 5);
+		ArrayList<PostVO> notices = pdao.selectByCategory("notice", 5);
+		ArrayList<LectureVO> lectures = ldao.selectTop(5);
 
 		request.setAttribute("frees", frees);
 		request.setAttribute("notices", notices);
