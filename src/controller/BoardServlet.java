@@ -31,9 +31,6 @@ public class BoardServlet extends HttpServlet {
 		PostDAO dao = new PostDAO();
 		ArrayList<PostVO> posts = null;
 
-		System.out.println(type);
-		System.out.println(filter);
-		
 		if (type != null) {
 			if (type.equals("title")) {
 				posts = dao.selectByCategoryTitle(category, filter);

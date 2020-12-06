@@ -16,11 +16,11 @@ import vo.UserVO;
 @WebFilter(urlPatterns = {"/LogoutServlet", "/EvaluationServlet", "/posting","/ImageServlet"})
 public class AuthFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
-		System.out.println("init AuthFilter");
+		System.out.println("로그인 확인 필터 등록됨");
 	}
 	
 	public void destroy() {
-		System.out.println("destroy AuthFilter");
+		System.out.println("로그인 확인 필터 해제됨");
 	}
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

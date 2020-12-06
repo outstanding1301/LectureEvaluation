@@ -107,6 +107,7 @@ public class UserDAO extends DAOBase {
 			ret = true;
 		}
 		catch (Exception e) {
+			ret = false;
 			System.out.println("DB: 유저 생성 실패 "+user.toString());
 			e.printStackTrace();
 		}

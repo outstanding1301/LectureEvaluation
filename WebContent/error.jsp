@@ -1,6 +1,6 @@
 <%@page import="vo.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,10 +12,16 @@
 	<jsp:include page="header.jsp">
 		<jsp:param name="value" value="test"/>
 	</jsp:include>
-	
+	<%
+	String msg = "";
+	if (exception != null)
+		msg = exception.getMessage();
+	if (request.getAttribute("message") != null)
+		msg = request.getAttribute("message").toString();
+	%>
 	<div class="container">
 		<h1>에러!</h1>
-		<h3><%=request.getAttribute("message").toString() %></h3>
+		<h3><%=msg %></h3>
 	</div>
 </body>
 </html>
