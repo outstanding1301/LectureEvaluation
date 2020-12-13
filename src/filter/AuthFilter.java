@@ -23,7 +23,8 @@ public class AuthFilter implements Filter {
 		System.out.println("로그인 확인 필터 해제됨");
 	}
 	
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
+			throws IOException, ServletException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");

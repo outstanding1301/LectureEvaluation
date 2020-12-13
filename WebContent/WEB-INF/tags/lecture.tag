@@ -18,3 +18,4 @@
     <a href="lecture?lec_id=${lecture.getId()}" class="card-link">☞ 강의 평가 페이지 바로가기</a>
   </div>
 </div>
+

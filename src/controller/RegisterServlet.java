@@ -19,13 +19,15 @@ import vo.UserVO;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
 		dispatcher.forward(request, response);
 	}
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String username = request.getParameter("username");
@@ -52,13 +54,16 @@ public class RegisterServlet extends HttpServlet {
 		if (!success) {
 			response.setContentType("text/html; charset=UTF-8"); 
 			PrintWriter out = response.getWriter(); 
-			out.println("<script>alert('회원가입에 실패했습니다.'); location.href='"+request.getContextPath()+"/register';</script>");
+			out.println("<script>alert('회원가입에 실패했습니다.'); location.href='"
+			+request.getContextPath()+"/register';</script>");
 			out.close();
 			return;
 		}
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter(); 
-		out.println("<script>alert('회원가입에 성공했습니다. 로그인 해주세요.'); location.href='"+request.getContextPath()+"';</script>");
+		out.println("<script>alert('회원가입에 성공했습니다. 로그인 해주세요.'); location.href='"
+		+request.getContextPath()+"';</script>");
 		out.close();
 	}
 }
+
