@@ -16,9 +16,7 @@
 <title>강의 평가 사이트 - 강의 평가</title>
 </head>
 <body>
-	<jsp:include page="header.jsp">
-		<jsp:param name="value" value="test"/>
-	</jsp:include>
+	<jsp:include page="header.jsp"/>
 <div class="container">
 <h3>강의평가</h3>
 <div class="card">

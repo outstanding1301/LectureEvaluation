@@ -11,9 +11,7 @@
 <title>강의 평가 사이트 - 게시물</title>
 </head>
 <body>
-	<jsp:include page="header.jsp">
-		<jsp:param name="value" value="test"/>
-	</jsp:include>
+	<jsp:include page="header.jsp"/>
 	<div class="container">
 		<h2 style="margin-top: 30px;">${post.getTitle()}</h2>
 		<h6 style="margin-bottom: 10px;">

@@ -14,9 +14,7 @@
 <title>강의 평가 사이트 - 강의 목록</title>
 </head>
 <body>
-	<jsp:include page="header.jsp">
-		<jsp:param name="value" value="test"/>
-	</jsp:include>
+	<jsp:include page="header.jsp"/>
 	<div class="container">
 		<h1>강의 목록</h1>
 		<c:forEach var="lecture" items="${lectures}">

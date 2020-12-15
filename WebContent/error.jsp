@@ -9,9 +9,7 @@
 <title>강의 평가 사이트</title>
 </head>
 <body>
-	<jsp:include page="header.jsp">
-		<jsp:param name="value" value="test"/>
-	</jsp:include>
+	<jsp:include page="header.jsp"/>
 	<%
 	String msg = "";
 	if (exception != null)

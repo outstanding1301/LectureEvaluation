@@ -8,9 +8,7 @@
 <title>강의 평가 사이트 - 게시물 작성</title>
 </head>
 <body>
-	<jsp:include page="header.jsp">
-		<jsp:param name="value" value="test"/>
-	</jsp:include>
+	<jsp:include page="header.jsp"/>
 	<% String category = request.getParameter("category"); %>
 	<div class="container">
 		<form name="postingform" action="posting" method="post">
